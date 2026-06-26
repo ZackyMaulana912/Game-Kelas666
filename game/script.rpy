@@ -52,15 +52,15 @@ label babak_1:
     menu:
         "Pilihan Dialog 1 (placeholder):"
 
-        "[A] Mengelak halus — 'Saya cuma kebetulan lewat.'":
+        "[[A] Mengelak halus — 'Saya cuma kebetulan lewat.'":
             $ poin_curiga += 1
             mc "Dummy A: aku berbohong soal kebetulan lewat."
 
-        "[B] Jujur sebagian — 'Saya berniat mencuri soal, tapi tidak membunuh.'":
+        "[[B] Jujur sebagian — 'Saya berniat mencuri soal, tapi tidak membunuh.'":
             $ poin_curiga += 0
             mc "Dummy B: aku mengaku niat mencuri."
 
-        "[C] Membentak — 'Bukan urusan Anda! Saya minta pulang!'":
+        "[[C] Membentak — 'Bukan urusan Anda! Saya minta pulang!'":
             $ poin_curiga += 2
             mc "Dummy C: aku membentak dan terlihat panik."
 
@@ -69,7 +69,7 @@ label babak_1:
         $ pengacara_percaya = False
         law "Placeholder Pengacara: ...(diam, mulai meragukanmu)."
 
-    "[DEBUG] Akhir Babak 1 -> poin_curiga=[poin_curiga], pengacara_percaya=[pengacara_percaya]"
+    "[[DEBUG] Akhir Babak 1 -> poin_curiga=[poin_curiga], pengacara_percaya=[pengacara_percaya]"
     return
 
 
@@ -84,15 +84,15 @@ label babak_2:
     menu:
         "Pilihan Dialog 2 (placeholder):"
 
-        "[A] 'Kursi kayu terlalu berat untuk saya angkat!'":
+        "[[A] 'Kursi kayu terlalu berat untuk saya angkat!'":
             $ poin_curiga += 1
             mc "Dummy A: argumen lemah, tidak mematahkan saksi."
 
-        "[B] 'Kalau gelap total, bagaimana kamu tahu pasti senjatanya?'":
+        "[[B] 'Kalau gelap total, bagaimana kamu tahu pasti senjatanya?'":
             $ saksi_hancur = True
             wit "Placeholder Saksi: ...(panik, menangis) Aku cuma mau curi soal!"
 
-    "[DEBUG] Akhir Babak 2 -> saksi_hancur=[saksi_hancur], poin_curiga=[poin_curiga]"
+    "[[DEBUG] Akhir Babak 2 -> saksi_hancur=[saksi_hancur], poin_curiga=[poin_curiga]"
     return
 
 
@@ -107,10 +107,10 @@ label babak_3:
     menu:
         "Pilihan Dialog 3 — penentuan akhir (placeholder):"
 
-        "[A] Bertahan dengan kebohongan — salahkan Saksi sepenuhnya.":
+        "[[A] Bertahan dengan kebohongan — salahkan Saksi sepenuhnya.":
             $ mc_mengaku = False
 
-        "[B] Mengaku — 'Korban memerasku. Itu tidak sengaja.'":
+        "[[B] Mengaku — 'Korban memerasku. Itu tidak sengaja.'":
             $ mc_mengaku = True
 
     # --- Kalkulasi Ending (if / elif / else) ------------------------------
@@ -129,19 +129,19 @@ label ending_bad:
     scene black with fade
     "== BAD ENDING — Penjara Maksimal =="
     "Kebohonganmu runtuh total. Pengacara mundur. Kamu dihukum berat."
-    "[DEBUG] poin_curiga=[poin_curiga] pengacara_percaya=[pengacara_percaya] saksi_hancur=[saksi_hancur]"
+    "[[DEBUG] poin_curiga=[poin_curiga] pengacara_percaya=[pengacara_percaya] saksi_hancur=[saksi_hancur]"
     return
 
 label ending_normal:
     scene black with fade
     "== NORMAL ENDING — Kambing Hitam =="
     "Saksi dipenjara, tapi kamu tetap di-DO. Selamat, tapi rasa bersalah membayangimu."
-    "[DEBUG] poin_curiga=[poin_curiga] pengacara_percaya=[pengacara_percaya] saksi_hancur=[saksi_hancur]"
+    "[[DEBUG] poin_curiga=[poin_curiga] pengacara_percaya=[pengacara_percaya] saksi_hancur=[saksi_hancur]"
     return
 
 label ending_true:
     scene black with fade
     "== TRUE ENDING — Manslaughter =="
     "Kamu mengaku. Skandal pemerasan terbongkar. Hukumanmu lebih ringan."
-    "[DEBUG] poin_curiga=[poin_curiga] pengacara_percaya=[pengacara_percaya] saksi_hancur=[saksi_hancur]"
+    "[[DEBUG] poin_curiga=[poin_curiga] pengacara_percaya=[pengacara_percaya] saksi_hancur=[saksi_hancur]"
     return
