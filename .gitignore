@@ -11,3 +11,23 @@ Progres_Minggu_2
 Progres_Minggu_3
 Progress_Minggu_4
 Alur_Cerita.md
+CLAUDE.md
+
+# Ren'Py — artefak yang tidak perlu di-commit
+*.rpyc
+*.rpymc
+*.rpyb
+game/cache/
+game/saves/
+game/bytecode.rpyb
+game/saves/persistent
+log.txt
+errors.txt
+traceback.txt
+# Hasil build distribusi
+*.app/
+*.dmg
+*.exe
+*.zip
+*.tar.bz2
+/dists/
