@@ -1,33 +1,40 @@
-# macOS
+# ===== macOS =====
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
 
-# Game Progress
-Progres_Minggu_1
-Progres_Minggu_2
-Progres_Minggu_3
-Progress_Minggu_4
+# ===== Dokumen kerja internal (lokal, tidak di-commit) =====
+# Catatan: huruf besar/kecil ditulis dua-duanya agar tetap diabaikan
+# di sistem yang case-sensitive (Linux) milik anggota tim lain.
+Progres_Minggu_1/
+Progres_Minggu_2/
+Progres_minggu_3/
+Progres_Minggu_3/
+Progress_Minggu_4/
 Alur_Cerita.md
 CLAUDE.md
 
-# Ren'Py — artefak yang tidak perlu di-commit
+# ===== Ren'Py — file kompilasi & data lokal =====
 *.rpyc
 *.rpymc
 *.rpyb
 game/cache/
 game/saves/
 game/bytecode.rpyb
-game/saves/persistent
+
+# ===== Ren'Py — log error =====
 log.txt
 errors.txt
 traceback.txt
-# Hasil build distribusi
+
+# ===== Hasil build distribusi =====
+/build/
+/dists/
 *.app/
 *.dmg
 *.exe
 *.zip
 *.tar.bz2
-/dists/
+*.rpa
