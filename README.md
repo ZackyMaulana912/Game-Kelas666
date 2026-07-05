@@ -86,6 +86,6 @@ Lewat **Ren'Py Launcher → Build Distributions**, centang target Mac & Windows:
 ## Status Pengembangan
 
 - [x] **Minggu 1** — Setup project, deklarasi variabel, prototipe logika 3 ending *(lint lulus)*
-- [ ] **Minggu 2** — Naskah penuh + sprite diwarnai
-- [ ] **Minggu 3** — Integrasi aset gambar & audio (beta build)
+- [x] **Minggu 2** — Naskah penuh + sprite diwarnai
+- [x] **Minggu 3** — Integrasi aset gambar & audio (beta build)
 - [ ] **Minggu 4** — Testing, polish, build final `.app` / `.dmg` / `.exe`

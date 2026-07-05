@@ -38,12 +38,12 @@ init python:
 # ==========================================================================
 # 1. KARAKTER
 # ==========================================================================
-define det  = Character("Detektif", color="#e06666", who_outlines=[(3, "#3a0d0d", 0, 0)])
-define law  = Character("Pengacara", color="#6fa8dc", who_outlines=[(3, "#0d2033", 0, 0)])
-define wit  = Character("Saksi", color="#d9c15a", who_outlines=[(3, "#33290d", 0, 0)])
-define vic  = Character("Rendra", color="#c98f8f", who_outlines=[(3, "#331616", 0, 0)])
-define hak  = Character("Hakim", color="#c9a86a", who_outlines=[(3, "#332810", 0, 0)])
-define mc   = Character("Jokiwi", color="#e8e8e8", who_outlines=[(3, "#222222", 0, 0)])
+define det  = Character("Detektif", color="#e06666", who_outlines=[(2, "#3a0d0d", 0, 0)])
+define law  = Character("Pengacara", color="#6fa8dc", who_outlines=[(2, "#0d2033", 0, 0)])
+define wit  = Character("Saksi", color="#d9c15a", who_outlines=[(2, "#33290d", 0, 0)])
+define vic  = Character("Rendra", color="#c98f8f", who_outlines=[(2, "#331616", 0, 0)])
+define hak  = Character("Hakim", color="#c9a86a", who_outlines=[(2, "#332810", 0, 0)])
+define mc   = Character("Jokiwi", color="#e8e8e8", who_outlines=[(2, "#222222", 0, 0)])
 define mcb  = Character("Jokiwi", color="#b9b9d6", what_italic=True, who_suffix=" (batin)")
 define narr = Character(None, what_italic=True)
 
@@ -98,7 +98,7 @@ transform flip:
 
 transform place_left:
     subpixel True
-    xanchor 0.5 yanchor 0.0 xpos 0.19 ypos 0.06
+    xanchor 0.5 yanchor 0.0 xpos 0.19 ypos 0.12
     on show:
         alpha 0.0 xoffset -260
         easein 0.45 alpha 1.0 xoffset 0
@@ -109,7 +109,7 @@ transform place_left:
 
 transform place_right:
     subpixel True
-    xanchor 0.5 yanchor 0.0 xpos 0.81 ypos 0.06
+    xanchor 0.5 yanchor 0.0 xpos 0.81 ypos 0.12
     on show:
         alpha 0.0 xoffset 260
         easein 0.45 alpha 1.0 xoffset 0
@@ -120,7 +120,7 @@ transform place_right:
 
 transform place_center:
     subpixel True
-    xanchor 0.5 yanchor 0.0 xpos 0.5 ypos 0.06
+    xanchor 0.5 yanchor 0.0 xpos 0.5 ypos 0.12
     on show:
         alpha 0.0 yoffset 50
         easein 0.45 alpha 1.0 yoffset 0
@@ -470,7 +470,7 @@ label ending_normal:
     with Dissolve(0.4)
     law "Yang Mulia, kesaksian yang menjadi dasar tuduhan mengandung kontradiksi besar. Saksi sendiri mengakui berada di lokasi untuk tujuan berbeda dari yang ia sampaikan."
 
-    play sound "audio/sfx/sfx_tangis_diseret.mp3"
+    play sound "<from 0 to 3.5>audio/sfx/sfx_tangis_diseret.mp3" fadeout 0.6 volume 0.35
     show saksi menangis at place_center, tremble_distress
     with Dissolve(0.5)
     wit "Saya... saya cuma mau menyalin kunci jawaban juga! Saya nggak ada hubungannya sama kematian itu!"
