@@ -80,6 +80,8 @@ Lewat **Ren'Py Launcher → Build Distributions**, centang target Mac & Windows:
 | QA & Script Editor | Vichras |
 
 ---
+## Dokumen & Aset Tambahan
+- [Google Drive - Dokumen Proyek](https://drive.google.com/drive/folders/12CWeOyPx1iAvS6cTZr3ep3M9bZ_f8sUV)
 
 ## Status Pengembangan
 
