@@ -7,7 +7,7 @@ define config.name = _("Kelas 666")
 
 define gui.show_name = True
 
-define config.version = "0.1.0"
+define config.version = "1.0.0"
 
 define gui.about = _p("""
 Visual novel interogasi/misteri.
@@ -22,8 +22,12 @@ define config.has_sound = True
 define config.has_music = True
 define config.has_voice = False
 
-# Musik di main menu (diaktifkan Minggu 3 setelah aset diimpor).
-# define config.main_menu_music = "audio/bgm_interrogation.mp3"
+# Volume awal mixer diturunkan (BGM sempat terlalu kencang).
+define config.default_music_volume = 0.45
+define config.default_sfx_volume = 0.8
+
+# Musik di main menu.
+define config.main_menu_music = "audio/bgm/bgm_interrogation.mp3"
 
 # --- Transisi default ------------------------------------------------------
 define config.enter_transition = dissolve
