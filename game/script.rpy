@@ -29,23 +29,80 @@
 
 
 # ==========================================================================
-# 0. CHANNEL AUDIO TAMBAHAN
+# 0. CHANNEL AUDIO TAMBAHAN + SISTEM "ACTIVE SPEAKER"
 # ==========================================================================
 init python:
     renpy.music.register_channel("ambient", mixer="sfx", loop=True)
+
+    # --- FOKUS PEMBICARA (active speaker highlight) -------------------------
+    # Tokoh yang sedang bicara sprite-nya sedikit membesar; tokoh lain sedikit
+    # menggelap. Reaktif & mulus (lerp per-frame). Tidak perlu ubah tiap baris
+    # dialog: cukup callback di tiap Character menyetel store.speaker = <tag>.
+    BASE_SPRITE_ZOOM = 0.72   # skala dasar sprite (sebelumnya di tiap Transform)
+    SPK_ZOOM_UP      = 1.05   # faktor perbesaran pembicara (subtil)
+    SPK_DIM          = -0.35  # offset brightness tokoh non-pembicara (menggelap)
+    SPK_LERP         = 8.0    # kecepatan transisi (makin besar makin cepat)
+
+    _spk_state = {}           # tag -> [zoom_factor, bright_offset, last_st]
+
+    def _set_speaker(tag):
+        # Callback Character: saat mulai bicara, tandai siapa yang aktif.
+        def cb(event, **kwargs):
+            if event == "begin":
+                store.speaker = tag
+        return cb
+
+    def _make_spk_update(tag):
+        # Fungsi ATL per-sprite: dipanggil tiap frame, menggeser zoom & brightness
+        # menuju target sesuai apakah tag ini yang sedang bicara.
+        def f(trans, st, at):
+            active = getattr(store, "speaker", None)
+            # Kalau pembicara tak punya sprite di layar (mis. MC POV / Hakim),
+            # jangan gelapkan siapa pun.
+            if active is not None and active not in renpy.get_showing_tags():
+                active = None
+
+            if active is None:
+                tgt_zoom, tgt_bright = 1.0, 0.0
+            elif active == tag:
+                tgt_zoom, tgt_bright = SPK_ZOOM_UP, 0.0
+            else:
+                tgt_zoom, tgt_bright = 1.0, SPK_DIM
+
+            state = _spk_state.setdefault(tag, [1.0, 0.0, st])
+            dt = st - state[2]
+            if dt < 0:
+                dt = 0.0
+            state[2] = st
+            k = dt * SPK_LERP
+            if k > 1.0:
+                k = 1.0
+            state[0] += (tgt_zoom - state[0]) * k
+            state[1] += (tgt_bright - state[1]) * k
+
+            trans.zoom = BASE_SPRITE_ZOOM * state[0]
+            trans.matrixcolor = BrightnessMatrix(state[1])
+            return 0
+        return f
+
+# Transform pembungkus tiap sprite (menyimpan skala dasar + fokus pembicara).
+transform spk_base(t):
+    function _make_spk_update(t)
+
+default speaker = None
 
 
 # ==========================================================================
 # 1. KARAKTER
 # ==========================================================================
-define det  = Character("Detektif", color="#e06666", who_outlines=[(2, "#3a0d0d", 0, 0)])
-define law  = Character("Pengacara", color="#6fa8dc", who_outlines=[(2, "#0d2033", 0, 0)])
-define wit  = Character("Saksi", color="#d9c15a", who_outlines=[(2, "#33290d", 0, 0)])
-define vic  = Character("Rendra", color="#c98f8f", who_outlines=[(2, "#331616", 0, 0)])
-define hak  = Character("Hakim", color="#c9a86a", who_outlines=[(2, "#332810", 0, 0)])
-define mc   = Character("Jokiwi", color="#e8e8e8", who_outlines=[(2, "#222222", 0, 0)])
-define mcb  = Character("Jokiwi", color="#b9b9d6", what_italic=True, who_suffix=" (batin)")
-define narr = Character(None, what_italic=True)
+define det  = Character("Detektif", color="#e06666", who_outlines=[(2, "#3a0d0d", 0, 0)], callback=_set_speaker("detektif"))
+define law  = Character("Pengacara", color="#6fa8dc", who_outlines=[(2, "#0d2033", 0, 0)], callback=_set_speaker("pengacara"))
+define wit  = Character("Saksi", color="#d9c15a", who_outlines=[(2, "#33290d", 0, 0)], callback=_set_speaker("saksi"))
+define vic  = Character("Rendra", color="#c98f8f", who_outlines=[(2, "#331616", 0, 0)], callback=_set_speaker("korban"))
+define hak  = Character("Hakim", color="#c9a86a", who_outlines=[(2, "#332810", 0, 0)], callback=_set_speaker("hakim"))
+define mc   = Character("Jokiwi", color="#e8e8e8", who_outlines=[(2, "#222222", 0, 0)], callback=_set_speaker("mc"))
+define mcb  = Character("Jokiwi", color="#b9b9d6", what_italic=True, who_suffix=" (batin)", callback=_set_speaker(None))
+define narr = Character(None, what_italic=True, callback=_set_speaker(None))
 
 
 # ==========================================================================
@@ -57,33 +114,33 @@ image trauma     = Transform("images/background/bg_kelas666_siluet_hitam.png", z
 
 # Sprite hasil NORMALISASI FISIK (images/norm/): tiap ekspresi diskalakan agar
 # ukuran kepala sama & kepala sejajar di kanvas seragam 1000x1300, halo dipangkas.
-# Ditampilkan dengan zoom seragam 0.72.
+# Skala dasar (BASE_SPRITE_ZOOM=0.72) & efek fokus pembicara ditangani spk_base().
 # --- Detektif ---
-image detektif normal     = Transform("images/norm/detektif_normal.png", zoom=0.72)
-image detektif intimidasi = Transform("images/norm/detektif_intimidasi.png", zoom=0.72)
-image detektif tegang     = Transform("images/norm/detektif_tegang.png", zoom=0.72)
-image detektif terkejut   = Transform("images/norm/detektif_terkejut.png", zoom=0.72)
-image detektif terdiam    = Transform("images/norm/detektif_terdiam.png", zoom=0.72)
+image detektif normal     = At("images/norm/detektif_normal.png", spk_base("detektif"))
+image detektif intimidasi = At("images/norm/detektif_intimidasi.png", spk_base("detektif"))
+image detektif tegang     = At("images/norm/detektif_tegang.png", spk_base("detektif"))
+image detektif terkejut   = At("images/norm/detektif_terkejut.png", spk_base("detektif"))
+image detektif terdiam    = At("images/norm/detektif_terdiam.png", spk_base("detektif"))
 
 # --- Pengacara ---
-image pengacara pd     = Transform("images/norm/pengacara_pd.png", zoom=0.72)
-image pengacara ragu   = Transform("images/norm/pengacara_ragu.png", zoom=0.72)
-image pengacara marah  = Transform("images/norm/pengacara_marah.png", zoom=0.72)
-image pengacara curiga = Transform("images/norm/pengacara_curiga.png", zoom=0.72)
-image pengacara lega   = Transform("images/norm/pengacara_lega.png", zoom=0.72)
-image pengacara diam   = Transform("images/norm/pengacara_diam.png", zoom=0.72)
-image pengacara dingin = Transform("images/norm/pengacara_dingin.png", zoom=0.72)
+image pengacara pd     = At("images/norm/pengacara_pd.png", spk_base("pengacara"))
+image pengacara ragu   = At("images/norm/pengacara_ragu.png", spk_base("pengacara"))
+image pengacara marah  = At("images/norm/pengacara_marah.png", spk_base("pengacara"))
+image pengacara curiga = At("images/norm/pengacara_curiga.png", spk_base("pengacara"))
+image pengacara lega   = At("images/norm/pengacara_lega.png", spk_base("pengacara"))
+image pengacara diam   = At("images/norm/pengacara_diam.png", spk_base("pengacara"))
+image pengacara dingin = At("images/norm/pengacara_dingin.png", spk_base("pengacara"))
 
 # --- Saksi (petugas kebersihan malam) ---
-image saksi normal   = Transform("images/norm/saksi_normal.png", zoom=0.72)
-image saksi arogan   = Transform("images/norm/saksi_arogan.png", zoom=0.72)
-image saksi gugup    = Transform("images/norm/saksi_gugup.png", zoom=0.72)
-image saksi panik    = Transform("images/norm/saksi_panik.png", zoom=0.72)
-image saksi menangis = Transform("images/norm/saksi_menangis.png", zoom=0.72)
+image saksi normal   = At("images/norm/saksi_normal.png", spk_base("saksi"))
+image saksi arogan   = At("images/norm/saksi_arogan.png", spk_base("saksi"))
+image saksi gugup    = At("images/norm/saksi_gugup.png", spk_base("saksi"))
+image saksi panik    = At("images/norm/saksi_panik.png", spk_base("saksi"))
+image saksi menangis = At("images/norm/saksi_menangis.png", spk_base("saksi"))
 
 # --- MC (Jokiwi) & Korban (Rendra) ---
-image mc normal = Transform("images/norm/mc_normal.png", zoom=0.72)
-image korban    = Transform("images/norm/korban.png", zoom=0.72)
+image mc normal = At("images/norm/mc_normal.png", spk_base("mc"))
+image korban    = At("images/norm/korban.png", spk_base("korban"))
 
 
 # ==========================================================================
