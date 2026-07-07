@@ -56,6 +56,16 @@ init python:
     build.classify("**/#**", None)
     build.classify("**/thumbs.db", None)
 
+    # Jangan ikutkan folder hasil build & dokumen kerja internal ke distribusi.
+    build.classify("dists/", None)
+    build.classify("dists/**", None)
+    build.classify("Progr*/", None)
+    build.classify("Progr*/**", None)
+    build.classify("CLAUDE.md", None)
+    build.classify("KEBUTUHAN.md", None)
+    build.classify("Alur_Cerita.md", None)
+    build.classify("log.txt", None)
+
     # Dokumentasi: dimasukkan ke arsip tapi tidak ke dalam game.
     build.documentation("*.html")
     build.documentation("*.txt")
