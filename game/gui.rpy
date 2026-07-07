@@ -88,7 +88,8 @@ define gui.title_text_size = gui.scale(50)
 ## Main and Game Menus #########################################################
 
 ## The images used for the main and game menus.
-define gui.main_menu_background = "gui/main_menu.png"
+## Main menu memakai latar Kelas 666 siluet hitam (bukan placeholder polos).
+define gui.main_menu_background = Transform("images/background/bg_kelas666_siluet_hitam.png", zoom=0.703)
 define gui.game_menu_background = "gui/game_menu.png"
 
 

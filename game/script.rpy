@@ -233,6 +233,8 @@ label start:
     play music "audio/bgm/bgm_prolog_malam.mp3" fadein 2.0 volume 0.8
     play ambient "audio/sfx/sfx_jam_dinding.mp3" fadein 1.0 volume 0.55
 
+    # Latar siluet hitam Kelas 666 (bukan layar hitam polos) selama monolog pembuka.
+    scene trauma with Dissolve(1.2)
     centered "{size=50}KELAS 666{/size}\n\n{size=28}Prolog — Malam Itu{/size}"
 
     mcb "Namaku Jokiwi. Siswa teladan, nilai sempurna, kebanggaan sekolah. Tak seorang pun tahu ada satu kesalahan di masa laluku."
