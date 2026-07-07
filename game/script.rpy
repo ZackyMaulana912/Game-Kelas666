@@ -155,9 +155,13 @@ image korban      = At("images/norm/rendra/normal.png", spk_base("korban"))
 transform flip:
     xzoom -1.0
 
+# Sprite native kecil (354x472). Semua slot dibesarkan (zoom komposit ~1.22 dengan
+# BASE_SPRITE_ZOOM) & di-anchor dari BAWAH (yanchor 1.0) supaya kaki sprite duduk
+# tepat di atas kotak teks di SELURUH scene (prolog, interogasi, sidang).
 transform place_left:
     subpixel True
-    xanchor 0.5 yanchor 0.0 xpos 0.19 ypos 0.12
+    zoom 1.7
+    xanchor 0.5 yanchor 1.0 xpos 0.22 ypos 0.83
     on show:
         alpha 0.0 xoffset -260
         easein 0.45 alpha 1.0 xoffset 0
@@ -168,7 +172,8 @@ transform place_left:
 
 transform place_right:
     subpixel True
-    xanchor 0.5 yanchor 0.0 xpos 0.81 ypos 0.12
+    zoom 1.7
+    xanchor 0.5 yanchor 1.0 xpos 0.78 ypos 0.83
     on show:
         alpha 0.0 xoffset 260
         easein 0.45 alpha 1.0 xoffset 0
@@ -179,7 +184,8 @@ transform place_right:
 
 transform place_center:
     subpixel True
-    xanchor 0.5 yanchor 0.0 xpos 0.5 ypos 0.12
+    zoom 1.7
+    xanchor 0.5 yanchor 1.0 xpos 0.5 ypos 0.83
     on show:
         alpha 0.0 yoffset 50
         easein 0.45 alpha 1.0 yoffset 0
@@ -187,45 +193,6 @@ transform place_center:
         alpha 1.0 yoffset 0
     on hide:
         easeout 0.4 alpha 0.0 yoffset 40
-
-# --- Penempatan RUANG SIDANG (ending) --------------------------------------
-# Sprite dibuat lebih besar (zoom komposit ~1.22) & di-anchor dari BAWAH (yanchor
-# 1.0) supaya kaki sprite duduk tepat di atas kotak teks, tidak menggantung kecil.
-transform court_left:
-    subpixel True
-    zoom 1.7
-    xanchor 0.5 yanchor 1.0 xpos 0.27 ypos 0.83
-    on show:
-        alpha 0.0 xoffset -220
-        easein 0.45 alpha 1.0 xoffset 0
-    on replace:
-        alpha 1.0 xoffset 0
-    on hide:
-        easeout 0.4 alpha 0.0 xoffset -180
-
-transform court_right:
-    subpixel True
-    zoom 1.7
-    xanchor 0.5 yanchor 1.0 xpos 0.73 ypos 0.83
-    on show:
-        alpha 0.0 xoffset 220
-        easein 0.45 alpha 1.0 xoffset 0
-    on replace:
-        alpha 1.0 xoffset 0
-    on hide:
-        easeout 0.4 alpha 0.0 xoffset 180
-
-transform court_center:
-    subpixel True
-    zoom 1.7
-    xanchor 0.5 yanchor 1.0 xpos 0.5 ypos 0.83
-    on show:
-        alpha 0.0 yoffset 40
-        easein 0.45 alpha 1.0 yoffset 0
-    on replace:
-        alpha 1.0 yoffset 0
-    on hide:
-        easeout 0.4 alpha 0.0 yoffset 30
 
 transform breathing:
     subpixel True
@@ -540,11 +507,11 @@ label ending_bad:
     play ambient "audio/sfx/sfx_gumama_sidang.mp3" fadein 1.0 volume 0.45
 
     scene bg terang with Dissolve(0.8)
-    show detektif normal at flip, court_right, breathing
+    show detektif normal at flip, place_right, breathing
     with Dissolve(0.4)
     det "Yang Mulia, seluruh bukti menunjukkan niat dan tindakan terdakwa. Poin kecurigaan yang terus meningkat sejak awal membuktikan ia tak pernah berniat jujur sejak hari pertama."
 
-    show pengacara diam at flip, court_left, breathing
+    show pengacara diam at flip, place_left, breathing
     with Dissolve(0.4)
     narr "Pengacara menunduk, tak mengangkat argumen apa pun."
 
@@ -569,16 +536,16 @@ label ending_normal:
     play ambient "audio/sfx/sfx_gumama_sidang.mp3" fadein 1.0 volume 0.45
 
     scene bg terang with Dissolve(0.8)
-    show pengacara pd at flip, court_left, breathing
+    show pengacara pd at flip, place_left, breathing
     with Dissolve(0.4)
     law "Yang Mulia, kesaksian yang menjadi dasar tuduhan mengandung kontradiksi besar. Saksi sendiri mengakui berada di lokasi untuk tujuan berbeda dari yang ia sampaikan."
 
     play sound "<from 0 to 3.5>audio/sfx/sfx_tangis_diseret.mp3" fadeout 0.6 volume 0.35
-    show saksi menangis at court_center, tremble_distress
+    show saksi menangis at place_center, tremble_distress
     with Dissolve(0.5)
     wit "Saya... saya cuma mau menyalin kunci jawaban juga! Saya nggak ada hubungannya sama kematian itu!"
 
-    show detektif terkejut at flip, court_right, breathing
+    show detektif terkejut at flip, place_right, breathing
     with Dissolve(0.4)
     narr "Detektif terdiam, menatap berkas di tangannya."
 
@@ -601,12 +568,12 @@ label ending_true:
     play ambient "audio/sfx/sfx_gumama_sidang.mp3" fadein 1.0 volume 0.4
 
     scene bg terang with Dissolve(0.8)
-    show pengacara pd at flip, court_left, breathing
+    show pengacara pd at flip, place_left, breathing
     with Dissolve(0.4)
     law "Yang Mulia, klien saya tidak pernah berniat mengakhiri nyawa siapa pun. Yang terjadi malam itu adalah kecelakaan dalam situasi penuh tekanan — bukan tindakan yang direncanakan."
 
     # Momen KUNCI: kamera lepas dari POV, wajah MC ditampilkan penuh
-    show mc normal at court_center, breathing
+    show mc normal at place_center, breathing
     with Dissolve(0.6)
     mc "Saya panik. Saya cuma mau kabur, bukan menyakiti siapa pun. Tapi saya terlalu takut mengatakan yang sebenarnya sejak awal."
 
@@ -617,7 +584,7 @@ label ending_true:
     play sound "audio/sfx/sfx_palu_pelan.mp3"
     hak "Terdakwa dinyatakan bersalah atas kelalaian yang mengakibatkan kematian, dengan hukuman yang telah mempertimbangkan pengakuan dan kerja samanya."
 
-    show pengacara lega at flip, court_left, breathing
+    show pengacara lega at flip, place_left, breathing
     mcb "Pengacara menepuk pundakku."
     law "Ini bukan akhir yang sempurna. Tapi ini akhir yang jujur."
 
