@@ -100,8 +100,8 @@ define law  = Character("Pengacara", color="#6fa8dc", who_outlines=[(2, "#0d2033
 define wit  = Character("Saksi", color="#d9c15a", who_outlines=[(2, "#33290d", 0, 0)], callback=_set_speaker("saksi"))
 define vic  = Character("Rendra", color="#c98f8f", who_outlines=[(2, "#331616", 0, 0)], callback=_set_speaker("korban"))
 define hak  = Character("Hakim", color="#c9a86a", who_outlines=[(2, "#332810", 0, 0)], callback=_set_speaker("hakim"))
-define mc   = Character("Jokiwi", color="#e8e8e8", who_outlines=[(2, "#222222", 0, 0)], callback=_set_speaker("mc"))
-define mcb  = Character("Jokiwi", color="#b9b9d6", what_italic=True, who_suffix=" (batin)", callback=_set_speaker(None))
+define mc   = Character("Jokiwi (MC)", color="#e8e8e8", who_outlines=[(2, "#222222", 0, 0)], callback=_set_speaker("mc"))
+define mcb  = Character("Jokiwi (MC)", color="#b9b9d6", what_italic=True, who_suffix=" — batin", callback=_set_speaker(None))
 define narr = Character(None, what_italic=True, callback=_set_speaker(None))
 
 
@@ -115,32 +115,34 @@ image trauma     = Transform("images/background/bg_kelas666_siluet_hitam.png", z
 # Sprite hasil NORMALISASI FISIK (images/norm/): tiap ekspresi diskalakan agar
 # ukuran kepala sama & kepala sejajar di kanvas seragam 1000x1300, halo dipangkas.
 # Skala dasar (BASE_SPRITE_ZOOM=0.72) & efek fokus pembicara ditangani spk_base().
+# Sprite dipisah per-karakter di images/norm/<karakter>/<ekspresi>.png
 # --- Detektif ---
-image detektif normal     = At("images/norm/detektif_normal.png", spk_base("detektif"))
-image detektif intimidasi = At("images/norm/detektif_intimidasi.png", spk_base("detektif"))
-image detektif tegang     = At("images/norm/detektif_tegang.png", spk_base("detektif"))
-image detektif terkejut   = At("images/norm/detektif_terkejut.png", spk_base("detektif"))
-image detektif terdiam    = At("images/norm/detektif_terdiam.png", spk_base("detektif"))
+image detektif normal     = At("images/norm/detektif/normal.png", spk_base("detektif"))
+image detektif intimidasi = At("images/norm/detektif/intimidasi.png", spk_base("detektif"))
+image detektif tegang     = At("images/norm/detektif/tegang.png", spk_base("detektif"))
+image detektif terkejut   = At("images/norm/detektif/terkejut.png", spk_base("detektif"))
+image detektif terdiam    = At("images/norm/detektif/terdiam.png", spk_base("detektif"))
 
 # --- Pengacara ---
-image pengacara pd     = At("images/norm/pengacara_pd.png", spk_base("pengacara"))
-image pengacara ragu   = At("images/norm/pengacara_ragu.png", spk_base("pengacara"))
-image pengacara marah  = At("images/norm/pengacara_marah.png", spk_base("pengacara"))
-image pengacara curiga = At("images/norm/pengacara_curiga.png", spk_base("pengacara"))
-image pengacara lega   = At("images/norm/pengacara_lega.png", spk_base("pengacara"))
-image pengacara diam   = At("images/norm/pengacara_diam.png", spk_base("pengacara"))
-image pengacara dingin = At("images/norm/pengacara_dingin.png", spk_base("pengacara"))
+image pengacara pd     = At("images/norm/pengacara/pd.png", spk_base("pengacara"))
+image pengacara ragu   = At("images/norm/pengacara/ragu.png", spk_base("pengacara"))
+image pengacara marah  = At("images/norm/pengacara/marah.png", spk_base("pengacara"))
+image pengacara curiga = At("images/norm/pengacara/curiga.png", spk_base("pengacara"))
+image pengacara lega   = At("images/norm/pengacara/lega.png", spk_base("pengacara"))
+image pengacara diam   = At("images/norm/pengacara/diam.png", spk_base("pengacara"))
+image pengacara dingin = At("images/norm/pengacara/dingin.png", spk_base("pengacara"))
 
 # --- Saksi (petugas kebersihan malam) ---
-image saksi normal   = At("images/norm/saksi_normal.png", spk_base("saksi"))
-image saksi arogan   = At("images/norm/saksi_arogan.png", spk_base("saksi"))
-image saksi gugup    = At("images/norm/saksi_gugup.png", spk_base("saksi"))
-image saksi panik    = At("images/norm/saksi_panik.png", spk_base("saksi"))
-image saksi menangis = At("images/norm/saksi_menangis.png", spk_base("saksi"))
+image saksi normal   = At("images/norm/saksi/normal.png", spk_base("saksi"))
+image saksi arogan   = At("images/norm/saksi/arogan.png", spk_base("saksi"))
+image saksi gugup    = At("images/norm/saksi/gugup.png", spk_base("saksi"))
+image saksi panik    = At("images/norm/saksi/panik.png", spk_base("saksi"))
+image saksi menangis = At("images/norm/saksi/menangis.png", spk_base("saksi"))
 
 # --- MC (Jokiwi) & Korban (Rendra) ---
-image mc normal = At("images/norm/mc_normal.png", spk_base("mc"))
-image korban    = At("images/norm/korban.png", spk_base("korban"))
+image mc normal   = At("images/norm/mc/normal.png", spk_base("mc"))
+image mc gemetar  = At("images/norm/mc/gemetar.png", spk_base("mc"))   # kemeja bernoda + tangan gemetar (pasca-insiden)
+image korban      = At("images/norm/rendra/normal.png", spk_base("korban"))
 
 
 # ==========================================================================
@@ -185,6 +187,45 @@ transform place_center:
         alpha 1.0 yoffset 0
     on hide:
         easeout 0.4 alpha 0.0 yoffset 40
+
+# --- Penempatan RUANG SIDANG (ending) --------------------------------------
+# Sprite dibuat lebih besar (zoom komposit ~1.22) & di-anchor dari BAWAH (yanchor
+# 1.0) supaya kaki sprite duduk tepat di atas kotak teks, tidak menggantung kecil.
+transform court_left:
+    subpixel True
+    zoom 1.7
+    xanchor 0.5 yanchor 1.0 xpos 0.27 ypos 0.83
+    on show:
+        alpha 0.0 xoffset -220
+        easein 0.45 alpha 1.0 xoffset 0
+    on replace:
+        alpha 1.0 xoffset 0
+    on hide:
+        easeout 0.4 alpha 0.0 xoffset -180
+
+transform court_right:
+    subpixel True
+    zoom 1.7
+    xanchor 0.5 yanchor 1.0 xpos 0.73 ypos 0.83
+    on show:
+        alpha 0.0 xoffset 220
+        easein 0.45 alpha 1.0 xoffset 0
+    on replace:
+        alpha 1.0 xoffset 0
+    on hide:
+        easeout 0.4 alpha 0.0 xoffset 180
+
+transform court_center:
+    subpixel True
+    zoom 1.7
+    xanchor 0.5 yanchor 1.0 xpos 0.5 ypos 0.83
+    on show:
+        alpha 0.0 yoffset 40
+        easein 0.45 alpha 1.0 yoffset 0
+    on replace:
+        alpha 1.0 yoffset 0
+    on hide:
+        easeout 0.4 alpha 0.0 yoffset 30
 
 transform breathing:
     subpixel True
@@ -260,7 +301,7 @@ label start:
     show korban at place_right, tremble
     vic "...aku bisa hancurkan masa depanmu detik ini juga."
     menu:
-        "Dia mencengkeram kerahmu. Apa yang kau lakukan?"
+        "Rendra mencengkeram kerahku erat-erat. Apa yang harus kulakukan?"
 
         "Mendorongnya menjauh sekuat tenaga.":
             mc "Lepaskan aku!"
@@ -276,7 +317,10 @@ label start:
 
     play sound "audio/sfx/sfx_sirene_polisi.mp3"
     narr "Dari kejauhan, sirene polisi. Semakin lama semakin dekat."
+    show mc gemetar at place_center, tremble
+    with Dissolve(0.5)
     mcb "Tanganku gemetar. Ada yang basah di ujung kemejaku. Lampu senter menyorot wajahku sebelum aku sempat berpikir."
+    hide mc with Dissolve(0.4)
 
     stop music fadeout 1.5
 
@@ -312,7 +356,7 @@ label babak_1:
     mcb "Pengacara ini satu-satunya perisaiku. Kalau dia berhenti percaya, aku habis. Tapi noda di kemejaku tak boleh terbongkar."
 
     menu:
-        "Bagaimana kau menjawab?"
+        "Bagaimana aku harus menjawab?"
 
         "\"Saya hanya kebetulan lewat dan melihat pintu terbuka.\"":
             $ poin_curiga += 1
@@ -352,7 +396,7 @@ label babak_1:
 label babak_2:
 
     show detektif normal at flip, place_right, breathing
-    det "Ada petugas kebersihan malam yang piket. Dia mengaku melihatmu — bersembunyi di balik meja saat kamu memukul korban."
+    det "Ada petugas kebersihan malam yang piket. Katanya, ia sedang bersembunyi di balik meja saat kejadian — dan dari sana ia melihatmu memukul korban."
 
     play sound "audio/sfx/sfx_langkah_pelan.mp3"
     show saksi arogan at place_center, breathing
@@ -366,7 +410,7 @@ label babak_2:
     play sound "audio/sfx/sfx_heartbeat.mp3"
 
     menu:
-        "Serang kesaksian Saksi:"
+        "Bagaimana aku harus membantah kesaksiannya?"
 
         "\"Kursi kayu terlalu berat untuk saya angkat!\"":
             $ poin_curiga += 1
@@ -455,7 +499,7 @@ label babak_3:
             show pengacara curiga at flip, place_left, breathing
             law "Saksi sudah kehilangan kredibilitas di depan hakim. Tapi bukti ini terlalu kuat untuk diabaikan. Ceritakan yang sebenarnya — aku akan cari cara membelamu."
             menu:
-                "Keputusan terakhirmu:"
+                "Keputusan terakhirku:"
                 "\"Saksi itu yang masuk untuk mencuri kunci jawaban! Dia mengarang cerita untuk menutupi jejaknya!\"":
                     jump ending_normal
                 "\"Saya tidak bermaksud membunuhnya. Kami bergumul, dia terjatuh membentur meja. Saya panik dan kabur.\"":
@@ -495,12 +539,12 @@ label ending_bad:
     play music "audio/bgm/bgm_ruang_sidang.mp3" fadein 1.2 volume 0.8
     play ambient "audio/sfx/sfx_gumama_sidang.mp3" fadein 1.0 volume 0.45
 
-    scene bg redup with Dissolve(0.8)
-    show detektif normal at flip, place_right, breathing
+    scene bg terang with Dissolve(0.8)
+    show detektif normal at flip, court_right, breathing
     with Dissolve(0.4)
     det "Yang Mulia, seluruh bukti menunjukkan niat dan tindakan terdakwa. Poin kecurigaan yang terus meningkat sejak awal membuktikan ia tak pernah berniat jujur sejak hari pertama."
 
-    show pengacara diam at flip, place_left, breathing
+    show pengacara diam at flip, court_left, breathing
     with Dissolve(0.4)
     narr "Pengacara menunduk, tak mengangkat argumen apa pun."
 
@@ -525,16 +569,16 @@ label ending_normal:
     play ambient "audio/sfx/sfx_gumama_sidang.mp3" fadein 1.0 volume 0.45
 
     scene bg terang with Dissolve(0.8)
-    show pengacara pd at flip, place_left, breathing
+    show pengacara pd at flip, court_left, breathing
     with Dissolve(0.4)
     law "Yang Mulia, kesaksian yang menjadi dasar tuduhan mengandung kontradiksi besar. Saksi sendiri mengakui berada di lokasi untuk tujuan berbeda dari yang ia sampaikan."
 
     play sound "<from 0 to 3.5>audio/sfx/sfx_tangis_diseret.mp3" fadeout 0.6 volume 0.35
-    show saksi menangis at place_center, tremble_distress
+    show saksi menangis at court_center, tremble_distress
     with Dissolve(0.5)
     wit "Saya... saya cuma mau menyalin kunci jawaban juga! Saya nggak ada hubungannya sama kematian itu!"
 
-    show detektif terkejut at flip, place_right, breathing
+    show detektif terkejut at flip, court_right, breathing
     with Dissolve(0.4)
     narr "Detektif terdiam, menatap berkas di tangannya."
 
@@ -557,12 +601,12 @@ label ending_true:
     play ambient "audio/sfx/sfx_gumama_sidang.mp3" fadein 1.0 volume 0.4
 
     scene bg terang with Dissolve(0.8)
-    show pengacara pd at flip, place_left, breathing
+    show pengacara pd at flip, court_left, breathing
     with Dissolve(0.4)
     law "Yang Mulia, klien saya tidak pernah berniat mengakhiri nyawa siapa pun. Yang terjadi malam itu adalah kecelakaan dalam situasi penuh tekanan — bukan tindakan yang direncanakan."
 
     # Momen KUNCI: kamera lepas dari POV, wajah MC ditampilkan penuh
-    show mc normal at place_center, breathing
+    show mc normal at court_center, breathing
     with Dissolve(0.6)
     mc "Saya panik. Saya cuma mau kabur, bukan menyakiti siapa pun. Tapi saya terlalu takut mengatakan yang sebenarnya sejak awal."
 
@@ -573,8 +617,8 @@ label ending_true:
     play sound "audio/sfx/sfx_palu_pelan.mp3"
     hak "Terdakwa dinyatakan bersalah atas kelalaian yang mengakibatkan kematian, dengan hukuman yang telah mempertimbangkan pengakuan dan kerja samanya."
 
-    show pengacara lega at flip, place_left, breathing
-    narr "Pengacara menepuk pundakku."
+    show pengacara lega at flip, court_left, breathing
+    mcb "Pengacara menepuk pundakku."
     law "Ini bukan akhir yang sempurna. Tapi ini akhir yang jujur."
 
     scene black with Dissolve(1.2)

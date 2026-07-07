@@ -15,8 +15,8 @@
 
 | Kode | Tokoh | Warna Nama | Peran |
 |------|-------|------------|-------|
-| `mc` | **Jokiwi** | Putih | MC. Siswa teladan yang diperas. Bicara lantang. |
-| `mcb` | **Jokiwi (batin)** | Ungu pudar, miring | Suara batin MC (orang pertama). |
+| `mc` | **Jokiwi (MC)** | Putih | MC. Siswa teladan yang diperas. Bicara lantang. Kotak nama menampilkan "Jokiwi (MC)". |
+| `mcb` | **Jokiwi (MC) — batin** | Ungu pudar, miring | Suara batin MC (orang pertama). |
 | `det` | **Detektif** | Merah | Menekan MC. |
 | `law` | **Pengacara** | Biru | Pendamping MC; kepercayaannya menentukan ending. |
 | `wit` | **Saksi** | Kuning | Petugas kebersihan malam; pencuri kunci jawaban. |
@@ -76,7 +76,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 **Rendra:** ...aku bisa hancurkan masa depanmu detik ini juga.
 
-### ▶ PILIHAN — "Dia mencengkeram kerahmu. Apa yang kau lakukan?"
+### ▶ PILIHAN — "Rendra mencengkeram kerahku erat-erat. Apa yang harus kulakukan?"
 
 | Pilihan | Dialog MC | Efek |
 |---------|-----------|------|
@@ -95,6 +95,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 **Narasi:** Dari kejauhan, sirene polisi. Semakin lama semakin dekat.
 
+*(Sprite `mc gemetar` muncul di tengah — Jokiwi dengan kemeja bernoda & tangan gemetar.)*
 **Jokiwi (batin):** Tanganku gemetar. Ada yang basah di ujung kemejaku. Lampu senter menyorot wajahku sebelum aku sempat berpikir.
 
 ---
@@ -110,7 +111,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 **Jokiwi (batin):** Pengacara ini satu-satunya perisaiku. Kalau dia berhenti percaya, aku habis. Tapi noda di kemejaku tak boleh terbongkar.
 
-### ▶ PILIHAN — "Bagaimana kau menjawab?"
+### ▶ PILIHAN — "Bagaimana aku harus menjawab?"
 
 #### A. "Saya hanya kebetulan lewat dan melihat pintu terbuka."
 > **Efek:** `poin_curiga += 1`
@@ -142,7 +143,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 ## BABAK 2 — Kontradiksi
 *Ruang Interogasi berlanjut.*
 
-**Detektif** *(normal)*: Ada petugas kebersihan malam yang piket. Dia mengaku melihatmu — bersembunyi di balik meja saat kamu memukul korban.
+**Detektif** *(normal)*: Ada petugas kebersihan malam yang piket. Katanya, ia sedang bersembunyi di balik meja saat kejadian — dan dari sana ia melihatmu memukul korban.
 
 *(Langkah pelan. Saksi muncul dari tengah, arogan.)*
 
@@ -154,7 +155,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 *(Detak jantung.)*
 
-### ▶ PILIHAN — "Serang kesaksian Saksi:"
+### ▶ PILIHAN — "Bagaimana aku harus membantah kesaksiannya?"
 
 #### A. "Kursi kayu terlalu berat untuk saya angkat!" — *(salah sasaran)*
 > **Efek:** `poin_curiga += 1`
@@ -234,7 +235,7 @@ else:  # saksi_hancur == False
 #### Cabang: `saksi_hancur` & `pengacara_percaya >= 1`
 **Pengacara** *(curiga)*: Saksi sudah kehilangan kredibilitas di depan hakim. Tapi bukti ini terlalu kuat untuk diabaikan. Ceritakan yang sebenarnya — aku akan cari cara membelamu.
 
-> **MENU — "Keputusan terakhirmu:"**
+> **MENU — "Keputusan terakhirku:"**
 > - "Saksi itu yang masuk untuk mencuri kunci jawaban! Dia mengarang cerita untuk menutupi jejaknya!" → **Normal Ending**
 > - "Saya tidak bermaksud membunuhnya. Kami bergumul, dia terjatuh membentur meja. Saya panik dan kabur." → **True Ending**
 
@@ -261,7 +262,7 @@ else:  # saksi_hancur == False
 ## ENDING — BAD (Penjara Maksimal)
 *Ruang Sidang. Beberapa minggu kemudian.*
 
-**BGM:** `bgm_ruang_sidang.mp3` · **Ambient:** `sfx_gumama_sidang.mp3` · **Latar:** Kelas redup.
+**BGM:** `bgm_ruang_sidang.mp3` · **Ambient:** `sfx_gumama_sidang.mp3` · **Latar:** Kelas terang.
 
 **Detektif** *(normal)*: Yang Mulia, seluruh bukti menunjukkan niat dan tindakan terdakwa. Poin kecurigaan yang terus meningkat sejak awal membuktikan ia tak pernah berniat jujur sejak hari pertama.
 
@@ -352,11 +353,13 @@ else:  # saksi_hancur == False
 ### SFX (`audio/sfx/`)
 `sfx_jam_dinding.mp3` (ambient prolog) · `sfx_langkah_pelan.mp3` · `sfx_brankas_decit.mp3` · `sfx_heartbeat.mp3` · `sfx_dorongan_benturan.mp3` · `sfx_sirene_polisi.mp3` · `sfx_desk_slam.mp3` · `sfx_paper_rustle.mp3` · `sfx_dramatic_hit.mp3` · `sfx_gumama_sidang.mp3` (ambient sidang) · `sfx_palu_tegas.mp3` · `sfx_palu_pelan.mp3` · `sfx_tangis_diseret.mp3`
 
-### Ekspresi Sprite (`images/norm/`)
-- **Detektif:** normal, intimidasi, tegang, terkejut, terdiam
-- **Pengacara:** pd, ragu, marah, curiga, lega, diam, dingin
-- **Saksi:** normal, arogan, gugup, panik, menangis
-- **MC (Jokiwi):** normal · **Korban (Rendra):** korban
+### Ekspresi Sprite (`images/norm/<karakter>/<ekspresi>.png`)
+Sprite dipisah per-karakter dalam subfolder, semua background sudah transparan (PNG RGBA):
+- **`detektif/`:** normal, intimidasi, tegang, terkejut, terdiam
+- **`pengacara/`:** pd, ragu, marah, curiga, lega, diam, dingin
+- **`saksi/`:** normal, arogan, gugup, panik, menangis
+- **`mc/`:** normal, gemetar *(kemeja bernoda + tangan gemetar; muncul di Prolog saat "Tanganku gemetar...")*
+- **`rendra/`:** normal *(dipakai sebagai image `korban`)*
 
 ### Background (`images/background/`)
 `bg_kelas666_redup.png` · `bg_kelas666_terang.png` · `bg_kelas666_siluet_hitam.png`
