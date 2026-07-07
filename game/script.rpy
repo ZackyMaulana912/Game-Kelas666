@@ -4,20 +4,19 @@
 # Lead Programmer: Zacky
 #
 # Basis alur & sistem variabel: Progres_Minggu_2/Naskah.md (Andy).
-# Casting adaptasi (semua aset terpakai):
-#   MC (Jokiwi) = main_char/MC_normal  (tampil di PROLOG & reveal True Ending)
-#   Rendra      = anak_nakal/...       (KORBAN: bandar contekan yang memeras Jokiwi)
-#   Saksi Mata  = saksi_mata/* (5 eksp) (petugas kebersihan malam pengincar kunci jawaban)
-#   Detektif, Pengacara                (sesuai desain)
+# Casting adaptasi (sprite di images/norm/<karakter>/, semua transparan):
+#   MC (Jokiwi) = norm/mc/     (normal, gemetar; tampil di PROLOG & reveal True Ending)
+#   Rendra      = norm/rendra/ (image 'korban'; bandar contekan yang memeras Jokiwi)
+#   Saksi       = norm/saksi/  (5 eksp; petugas kebersihan malam pengincar kunci jawaban)
+#   Detektif    = norm/detektif/ ; Pengacara = norm/pengacara/
 #
 # Sistem variabel (Andy):
 #   poin_curiga=0 ; pengacara_percaya=2 (ANGKA; Babak 3 auto -2) ; saksi_hancur=False
 #
-# --- NORMALISASI UKURAN SPRITE --------------------------------------------
-# Tiap ekspresi digambar dengan skala berbeda di kanvas 1024x1536-nya, jadi
-# SETIAP gambar dinormalkan sendiri (crop dari atas kepala + zoom) supaya tampil
-# sebagai bust dengan tinggi layar SAMA (720px) & kepala sejajar. Angka dihitung
-# dari alpha (threshold >200): zoom = 1150/tinggi-solid, crop mulai kepala-25px.
+# --- UKURAN SPRITE ---------------------------------------------------------
+# Sprite native ~354x472 px, background sudah dihapus (PNG transparan). Skala dasar
+# ditangani spk_base() (BASE_SPRITE_ZOOM=0.72) + slot place_* (zoom 1.7, anchor bawah)
+# supaya tampil besar & duduk di atas kotak teks secara seragam di semua scene.
 #
 # --- SIAPA BICARA (voice) --------------------------------------------------
 #   det/law/wit/vic/hak = tokoh (kotak nama).  mc = MC bicara lantang ("Aku").
@@ -106,14 +105,13 @@ define narr = Character(None, what_italic=True, callback=_set_speaker(None))
 
 
 # ==========================================================================
-# 2. DEFINISI GAMBAR  (sprite sudah dinormalkan: bust 720px, kepala sejajar)
+# 2. DEFINISI GAMBAR  (sprite transparan, ~354x472; skala via spk_base + place_*)
 # ==========================================================================
 image bg redup   = Transform("images/background/bg_kelas666_redup.png", zoom=0.703)
 image bg terang  = Transform("images/background/bg_kelas666_terang.png", zoom=0.703)
 image trauma     = Transform("images/background/bg_kelas666_siluet_hitam.png", zoom=0.703)
 
-# Sprite hasil NORMALISASI FISIK (images/norm/): tiap ekspresi diskalakan agar
-# ukuran kepala sama & kepala sejajar di kanvas seragam 1000x1300, halo dipangkas.
+# Sprite (images/norm/): background sudah dihapus (PNG transparan).
 # Skala dasar (BASE_SPRITE_ZOOM=0.72) & efek fokus pembicara ditangani spk_base().
 # Sprite dipisah per-karakter di images/norm/<karakter>/<ekspresi>.png
 # --- Detektif ---

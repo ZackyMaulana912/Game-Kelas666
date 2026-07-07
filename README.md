@@ -2,7 +2,7 @@
 
 > Visual novel interogasi bergaya *courtroom drama* — dibuat dengan **Ren'Py**.
 
-MC tertangkap di Kelas 666 pada malam hari bersama sebuah mayat dan brankas soal ujian yang terbuka. Seorang saksi menudingnya sebagai pembunuh. Lewat tiga babak interogasi yang menegangkan, pemain harus menyusun kebohongan, mematahkan kesaksian, dan menentukan nasib MC sendiri — dengan **3 ending** berbeda.
+MC (**Jokiwi**) tertangkap di Kelas 666 pada malam hari bersama mayat **Rendra** (bandar kunci jawaban yang memerasnya) dan brankas soal ujian yang terbuka. Seorang saksi (petugas kebersihan malam) menudingnya sebagai pembunuh. Lewat tiga babak interogasi yang menegangkan, pemain harus menyusun kebohongan, mematahkan kesaksian, dan menentukan nasib Jokiwi sendiri — dengan **3 ending** berbeda.
 
 ---
 
@@ -30,10 +30,13 @@ Ending ditentukan oleh akumulasi variabel: `poin_curiga`, `pengacara_percaya`, d
 ```
 Game-Kelas666/
 ├── game/
-│   ├── script.rpy      # Alur cerita & logika percabangan
+│   ├── script.rpy      # Alur cerita & logika percabangan (naskah final)
+│   ├── script.md       # Salinan markdown naskah final (untuk tim)
 │   ├── options.rpy     # Konfigurasi game & build
 │   ├── gui.rpy         # Pengaturan tampilan (1920×1080)
-│   ├── images/         # Sprite karakter & background
+│   ├── images/
+│   │   ├── background/ # bg_kelas666_{redup,terang,siluet_hitam}.png
+│   │   └── norm/       # Sprite transparan per-karakter: detektif/ pengacara/ saksi/ mc/ rendra/
 │   └── audio/
 │       ├── bgm/        # Musik latar
 │       └── sfx/        # Efek suara
