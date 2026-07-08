@@ -1,6 +1,6 @@
 # ==========================================================================
 # Game: Kelas 666
-# script.rpy  —  VERSI ADAPTASI (naskah Andy + improvisasi integrasi)
+# script.rpy  -  VERSI ADAPTASI (naskah Andy + improvisasi integrasi)
 # Lead Programmer: Zacky
 #
 # Basis alur & sistem variabel: Progres_Minggu_2/Naskah.md (Andy).
@@ -100,7 +100,7 @@ define wit  = Character("Saksi", color="#d9c15a", who_outlines=[(2, "#33290d", 0
 define vic  = Character("Rendra", color="#c98f8f", who_outlines=[(2, "#331616", 0, 0)], callback=_set_speaker("korban"))
 define hak  = Character("Hakim", color="#c9a86a", who_outlines=[(2, "#332810", 0, 0)], callback=_set_speaker("hakim"))
 define mc   = Character("Jokiwi (MC)", color="#e8e8e8", who_outlines=[(2, "#222222", 0, 0)], callback=_set_speaker("mc"))
-define mcb  = Character("Jokiwi (MC)", color="#b9b9d6", what_italic=True, who_suffix=" — batin", callback=_set_speaker(None))
+define mcb  = Character("Jokiwi (batin)", color="#b9b9d6", what_italic=True, callback=_set_speaker(None))
 define narr = Character(None, what_italic=True, callback=_set_speaker(None))
 
 
@@ -229,7 +229,7 @@ define CURIGA_THRESHOLD = 3
 
 
 # ==========================================================================
-# 5. PROLOG — MALAM ITU  (Kelas 666, jam 2 pagi)
+# 5. PROLOG - MALAM ITU  (Kelas 666, jam 2 pagi)
 # ==========================================================================
 label start:
 
@@ -241,7 +241,7 @@ label start:
 
     # Latar siluet hitam Kelas 666 (bukan layar hitam polos) selama monolog pembuka.
     scene trauma with Dissolve(1.2)
-    centered "{size=50}KELAS 666{/size}\n\n{size=28}Prolog — Malam Itu{/size}"
+    centered "{size=50}KELAS 666{/size}\n\n{size=28}Prolog - Malam Itu{/size}"
 
     mcb "Namaku Jokiwi. Siswa teladan, nilai sempurna, kebanggaan sekolah. Tak seorang pun tahu ada satu kesalahan di masa laluku."
     mcb "Kesalahan yang dipakai seseorang untuk memerasku selama berbulan-bulan."
@@ -260,7 +260,7 @@ label start:
     show korban at place_right, breathing
     with Dissolve(0.5)
     vic "Wah, wah. Si anak teladan malah nekat juga malam ini."
-    mcb "Dia. Bandar kunci jawaban — orang yang selama ini memerasku."
+    mcb "Dia. Bandar kunci jawaban, orang yang selama ini memerasku."
     vic "Tenang. Selama kamu terus bayar, rahasiamu aman. Tapi kalau berani macam-macam malam ini..."
 
     show korban at place_right, tremble
@@ -277,7 +277,7 @@ label start:
     play sound "audio/sfx/sfx_dorongan_benturan.mp3"
     scene black with slam
     with vpunch
-    narr "Suara dorongan. Sebuah benda jatuh menghantam sudut meja. Lalu — hening."
+    narr "Suara dorongan. Sebuah benda jatuh menghantam sudut meja. Lalu, hening."
     mcb "Aku tidak ingat persis apa yang terjadi. Yang kuingat cuma suara benturan keras, lalu tubuhnya tak bergerak lagi."
 
     play sound "audio/sfx/sfx_sirene_polisi.mp3"
@@ -297,12 +297,12 @@ label start:
 
 
 # ==========================================================================
-# BABAK 1 — TEKANAN
+# BABAK 1 - TEKANAN
 # ==========================================================================
 label babak_1:
 
     scene black with Dissolve(0.6)
-    centered "{size=40}Babak 1 — Ruang Interogasi{/size}\n\n{size=26}Beberapa jam kemudian.{/size}"
+    centered "{size=40}Babak 1 - Ruang Interogasi{/size}\n\n{size=26}Beberapa jam kemudian.{/size}"
 
     play sound "audio/sfx/sfx_desk_slam.mp3"
     scene black with slam
@@ -316,7 +316,7 @@ label babak_1:
 
     show pengacara pd at flip, place_left, breathing
     with Dissolve(0.4)
-    law "Dan aku pengacara yang ditunjuk mendampingimu. Jangan jawab terburu-buru — katakan yang sejujurnya, apa yang kamu lakukan di sana jam dua pagi?"
+    law "Dan aku pengacara yang ditunjuk mendampingimu. Jangan jawab terburu-buru, katakan yang sejujurnya, apa yang kamu lakukan di sana jam dua pagi?"
 
     mcb "Pengacara ini satu-satunya perisaiku. Kalau dia berhenti percaya, aku habis. Tapi noda di kemejaku tak boleh terbongkar."
 
@@ -333,7 +333,7 @@ label babak_1:
 
         "\"Saya memang berniat mencuri soal ujian, tapi saya tidak membunuh siapa pun!\"":
             $ pengacara_percaya += 1
-            mc "Saya jujur saja. Saya ke sana untuk mengambil soal ujian — itu salah, saya akui. Tapi saya tidak membunuh siapa pun."
+            mc "Saya jujur saja. Saya ke sana untuk mengambil soal ujian, itu salah, saya akui. Tapi saya tidak membunuh siapa pun."
             show detektif terdiam at flip, place_right, breathing
             det "...Setidaknya kau punya nyali untuk mengakui satu dosa."
             show pengacara pd at flip, place_left, breathing
@@ -356,12 +356,12 @@ label babak_1:
 
 
 # ==========================================================================
-# BABAK 2 — KONTRADIKSI
+# BABAK 2 - KONTRADIKSI
 # ==========================================================================
 label babak_2:
 
     show detektif normal at flip, place_right, breathing
-    det "Ada petugas kebersihan malam yang piket. Katanya, ia sedang bersembunyi di balik meja saat kejadian — dan dari sana ia melihatmu memukul korban."
+    det "Ada petugas kebersihan malam yang piket. Katanya, ia sedang bersembunyi di balik meja saat kejadian, dan dari sana ia melihatmu memukul korban."
 
     play sound "audio/sfx/sfx_langkah_pelan.mp3"
     show saksi arogan at place_center, breathing
@@ -409,7 +409,7 @@ label babak_2:
             play sound "audio/sfx/sfx_heartbeat.mp3"
             wit "Baik! BAIK! Saya mengaku!"
             show saksi menangis at place_center, tremble_distress
-            wit "Saya tidak melihat pembunuhannya! Saya datang ke sana {i}setelah{/i} kejadian — cuma mau menyalin kunci jawaban untuk saya jual!"
+            wit "Saya tidak melihat pembunuhannya! Saya datang ke sana {i}setelah{/i} kejadian, cuma mau menyalin kunci jawaban untuk saya jual!"
             wit "Waktu saya masuk, mayatnya sudah tergeletak. Saya panik, takut dituduh, jadi saya karang cerita itu!"
 
             show pengacara lega at flip, place_left, breathing
@@ -421,7 +421,7 @@ label babak_2:
 
 
 # ==========================================================================
-# BABAK 3 — BUKTI ABSOLUT & PENENTUAN NASIB
+# BABAK 3 - BUKTI ABSOLUT & PENENTUAN NASIB
 # ==========================================================================
 label babak_3:
 
@@ -434,7 +434,7 @@ label babak_3:
 
     play sound "audio/sfx/sfx_paper_rustle.mp3"
     show detektif intimidasi at flip, place_right, breathing
-    det "Kami menemukan ponsel korban. Isinya draf pesan ancaman untukmu — bukti dia memerasmu."
+    det "Kami menemukan ponsel korban. Isinya draf pesan ancaman untukmu, bukti dia memerasmu."
     det "Dan yang paling fatal: ada serpihan kain kemejamu di bawah kuku korban."
 
     play sound "audio/sfx/sfx_dramatic_hit.mp3" volume 0.7
@@ -446,7 +446,7 @@ label babak_3:
 
     $ pengacara_percaya -= 2
 
-    mcb "Pesan ancaman itu membuktikan korban memerasku — motif yang kusembunyikan sejak awal. Apa pun yang kukatakan sekarang harus cukup untuk meyakinkan pengacaraku kembali."
+    mcb "Pesan ancaman itu membuktikan korban memerasku, motif yang kusembunyikan sejak awal. Apa pun yang kukatakan sekarang harus cukup untuk meyakinkan pengacaraku kembali."
 
     # ---------------- KONDISI A : poin_curiga >= 3 ----------------
     if poin_curiga >= CURIGA_THRESHOLD:
@@ -462,7 +462,7 @@ label babak_3:
     if saksi_hancur:
         if pengacara_percaya >= 1:
             show pengacara curiga at flip, place_left, breathing
-            law "Saksi sudah kehilangan kredibilitas di depan hakim. Tapi bukti ini terlalu kuat untuk diabaikan. Ceritakan yang sebenarnya — aku akan cari cara membelamu."
+            law "Saksi sudah kehilangan kredibilitas di depan hakim. Tapi bukti ini terlalu kuat untuk diabaikan. Ceritakan yang sebenarnya, aku akan cari cara membelamu."
             menu:
                 "Keputusan terakhirku:"
                 "\"Saksi itu yang masuk untuk mencuri kunci jawaban! Dia mengarang cerita untuk menutupi jejaknya!\"":
@@ -552,7 +552,7 @@ label ending_normal:
     hak "Mengingat kredibilitas kesaksian yang runtuh, dan tidak adanya bukti langsung yang mengaitkan terdakwa dengan kekerasan, pengadilan membebaskan terdakwa dari seluruh tuduhan."
 
     scene black with Dissolve(1.2)
-    mcb "Aku bebas. Tapi kebebasan ini seperti utang yang belum kubayar. Aku tahu persis apa yang terjadi malam itu — dan itu bukan Saksi."
+    mcb "Aku bebas. Tapi kebebasan ini seperti utang yang belum kubayar. Aku tahu persis apa yang terjadi malam itu, dan itu bukan Saksi."
     mcb "Mungkin suatu hari kebenaran ini akan mengejarku kembali. Tapi untuk sekarang, aku memilih berjalan terus."
     centered "{size=72}NORMAL ENDING{/size}\n\n{size=40}Kambing Hitam{/size}"
     jump the_end
@@ -568,7 +568,7 @@ label ending_true:
     scene bg terang with Dissolve(0.8)
     show pengacara pd at flip, place_left, breathing
     with Dissolve(0.4)
-    law "Yang Mulia, klien saya tidak pernah berniat mengakhiri nyawa siapa pun. Yang terjadi malam itu adalah kecelakaan dalam situasi penuh tekanan — bukan tindakan yang direncanakan."
+    law "Yang Mulia, klien saya tidak pernah berniat mengakhiri nyawa siapa pun. Yang terjadi malam itu adalah kecelakaan dalam situasi penuh tekanan, bukan tindakan yang direncanakan."
 
     # Momen KUNCI: kamera lepas dari POV, wajah MC ditampilkan penuh
     show mc normal at place_center, breathing
@@ -587,8 +587,8 @@ label ending_true:
     law "Ini bukan akhir yang sempurna. Tapi ini akhir yang jujur."
 
     scene black with Dissolve(1.2)
-    mcb "Untuk pertama kalinya sejak malam itu, aku bisa bernapas lega. Bukan karena aku bebas — tapi karena aku akhirnya berhenti berbohong, bahkan pada diriku sendiri."
-    centered "{size=72}TRUE ENDING{/size}\n\n{size=40}Manslaughter{/size}"
+    mcb "Untuk pertama kalinya sejak malam itu, aku bisa bernapas lega. Bukan karena aku bebas, tapi karena aku akhirnya berhenti berbohong, bahkan pada diriku sendiri."
+    centered "{size=72}TRUE ENDING{/size}\n\n{size=40}Tidak Disengaja{/size}"
     jump the_end
 
 

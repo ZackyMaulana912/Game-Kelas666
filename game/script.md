@@ -16,7 +16,7 @@
 | Kode | Tokoh | Warna Nama | Peran |
 |------|-------|------------|-------|
 | `mc` | **Jokiwi (MC)** | Putih | MC. Siswa teladan yang diperas. Bicara lantang. Kotak nama menampilkan "Jokiwi (MC)". |
-| `mcb` | **Jokiwi (MC) — batin** | Ungu pudar, miring | Suara batin MC (orang pertama). |
+| `mcb` | **Jokiwi (batin)** | Ungu pudar, miring | Suara batin MC (orang pertama). |
 | `det` | **Detektif** | Merah | Menekan MC. |
 | `law` | **Pengacara** | Biru | Pendamping MC; kepercayaannya menentukan ending. |
 | `wit` | **Saksi** | Kuning | Petugas kebersihan malam; pencuri kunci jawaban. |
@@ -68,7 +68,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 **Rendra:** Wah, wah. Si anak teladan malah nekat juga malam ini.
 
-**Jokiwi (batin):** Dia. Bandar kunci jawaban — orang yang selama ini memerasku.
+**Jokiwi (batin):** Dia. Bandar kunci jawaban, orang yang selama ini memerasku.
 
 **Rendra:** Tenang. Selama kamu terus bayar, rahasiamu aman. Tapi kalau berani macam-macam malam ini...
 
@@ -87,7 +87,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 *(Ambient berhenti. Suara dorongan & benturan → layar hitam, `vpunch`.)*
 
-**Narasi:** Suara dorongan. Sebuah benda jatuh menghantam sudut meja. Lalu — hening.
+**Narasi:** Suara dorongan. Sebuah benda jatuh menghantam sudut meja. Lalu, hening.
 
 **Jokiwi (batin):** Aku tidak ingat persis apa yang terjadi. Yang kuingat cuma suara benturan keras, lalu tubuhnya tak bergerak lagi.
 
@@ -107,7 +107,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 **Detektif** *(intimidasi)*: Aku Detektif yang menangani kasusmu. Kamu tertangkap basah di Kelas 666 bersama mayat dan brankas soal yang terbuka. Jangan mengelak lagi.
 
-**Pengacara** *(percaya diri)*: Dan aku pengacara yang ditunjuk mendampingimu. Jangan jawab terburu-buru — katakan yang sejujurnya, apa yang kamu lakukan di sana jam dua pagi?
+**Pengacara** *(percaya diri)*: Dan aku pengacara yang ditunjuk mendampingimu. Jangan jawab terburu-buru, katakan yang sejujurnya, apa yang kamu lakukan di sana jam dua pagi?
 
 **Jokiwi (batin):** Pengacara ini satu-satunya perisaiku. Kalau dia berhenti percaya, aku habis. Tapi noda di kemejaku tak boleh terbongkar.
 
@@ -123,7 +123,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 #### B. "Saya memang berniat mencuri soal ujian, tapi saya tidak membunuh siapa pun!"
 > **Efek:** `pengacara_percaya += 1`
 
-**Jokiwi:** Saya jujur saja. Saya ke sana untuk mengambil soal ujian — itu salah, saya akui. Tapi saya tidak membunuh siapa pun.
+**Jokiwi:** Saya jujur saja. Saya ke sana untuk mengambil soal ujian, itu salah, saya akui. Tapi saya tidak membunuh siapa pun.
 **Detektif** *(terdiam)*: ...Setidaknya kau punya nyali untuk mengakui satu dosa.
 **Pengacara** *(pd)*: (Bagus. Kejujuran parsial membuatmu terlihat manusiawi, bukan monster.)
 
@@ -143,7 +143,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 ## BABAK 2 — Kontradiksi
 *Ruang Interogasi berlanjut.*
 
-**Detektif** *(normal)*: Ada petugas kebersihan malam yang piket. Katanya, ia sedang bersembunyi di balik meja saat kejadian — dan dari sana ia melihatmu memukul korban.
+**Detektif** *(normal)*: Ada petugas kebersihan malam yang piket. Katanya, ia sedang bersembunyi di balik meja saat kejadian, dan dari sana ia melihatmu memukul korban.
 
 *(Langkah pelan. Saksi muncul dari tengah, arogan.)*
 
@@ -180,7 +180,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 *(BGM ganti `bgm_panic.mp3`. Detak jantung.)*
 **Saksi** *(panik)*: Baik! BAIK! Saya mengaku!
-**Saksi** *(menangis)*: Saya tidak melihat pembunuhannya! Saya datang ke sana *setelah* kejadian — cuma mau menyalin kunci jawaban untuk saya jual!
+**Saksi** *(menangis)*: Saya tidak melihat pembunuhannya! Saya datang ke sana *setelah* kejadian, cuma mau menyalin kunci jawaban untuk saya jual!
 **Saksi:** Waktu saya masuk, mayatnya sudah tergeletak. Saya panik, takut dituduh, jadi saya karang cerita itu!
 
 **Pengacara** *(lega)*: Kesaksian dibatalkan. Satu-satunya 'saksi mata' baru saja mengaku berbohong.
@@ -198,7 +198,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 *(Kertas berdesir.)*
 
-**Detektif** *(intimidasi)*: Kami menemukan ponsel korban. Isinya draf pesan ancaman untukmu — bukti dia memerasmu.
+**Detektif** *(intimidasi)*: Kami menemukan ponsel korban. Isinya draf pesan ancaman untukmu, bukti dia memerasmu.
 **Detektif:** Dan yang paling fatal: ada serpihan kain kemejamu di bawah kuku korban.
 
 *(SFX `sfx_dramatic_hit`. BGM `bgm_panic`. `vpunch`.)*
@@ -207,7 +207,7 @@ define CURIGA_THRESHOLD = 3         # Ambang batas menuju Bad Ending
 
 > **Efek otomatis:** `pengacara_percaya -= 2`
 
-**Jokiwi (batin):** Pesan ancaman itu membuktikan korban memerasku — motif yang kusembunyikan sejak awal. Apa pun yang kukatakan sekarang harus cukup untuk meyakinkan pengacaraku kembali.
+**Jokiwi (batin):** Pesan ancaman itu membuktikan korban memerasku, motif yang kusembunyikan sejak awal. Apa pun yang kukatakan sekarang harus cukup untuk meyakinkan pengacaraku kembali.
 
 ### Pohon Keputusan Ending
 
@@ -233,7 +233,7 @@ else:  # saksi_hancur == False
 ```
 
 #### Cabang: `saksi_hancur` & `pengacara_percaya >= 1`
-**Pengacara** *(curiga)*: Saksi sudah kehilangan kredibilitas di depan hakim. Tapi bukti ini terlalu kuat untuk diabaikan. Ceritakan yang sebenarnya — aku akan cari cara membelamu.
+**Pengacara** *(curiga)*: Saksi sudah kehilangan kredibilitas di depan hakim. Tapi bukti ini terlalu kuat untuk diabaikan. Ceritakan yang sebenarnya, aku akan cari cara membelamu.
 
 > **MENU — "Keputusan terakhirku:"**
 > - "Saksi itu yang masuk untuk mencuri kunci jawaban! Dia mengarang cerita untuk menutupi jejaknya!" → **Normal Ending**
@@ -296,7 +296,7 @@ else:  # saksi_hancur == False
 **Hakim:** Mengingat kredibilitas kesaksian yang runtuh, dan tidak adanya bukti langsung yang mengaitkan terdakwa dengan kekerasan, pengadilan membebaskan terdakwa dari seluruh tuduhan.
 
 *(Layar hitam.)*
-**Jokiwi (batin):** Aku bebas. Tapi kebebasan ini seperti utang yang belum kubayar. Aku tahu persis apa yang terjadi malam itu — dan itu bukan Saksi.
+**Jokiwi (batin):** Aku bebas. Tapi kebebasan ini seperti utang yang belum kubayar. Aku tahu persis apa yang terjadi malam itu, dan itu bukan Saksi.
 **Jokiwi (batin):** Mungkin suatu hari kebenaran ini akan mengejarku kembali. Tapi untuk sekarang, aku memilih berjalan terus.
 
 > **NORMAL ENDING**
@@ -304,12 +304,12 @@ else:  # saksi_hancur == False
 
 ---
 
-## ENDING — TRUE (Manslaughter)
+## ENDING - TRUE (Tidak Disengaja)
 *Ruang Sidang. Beberapa minggu kemudian.*
 
 **BGM:** `bgm_ruang_sidang.mp3` · **Ambient:** `sfx_gumama_sidang.mp3` · **Latar:** Kelas terang.
 
-**Pengacara** *(pd)*: Yang Mulia, klien saya tidak pernah berniat mengakhiri nyawa siapa pun. Yang terjadi malam itu adalah kecelakaan dalam situasi penuh tekanan — bukan tindakan yang direncanakan.
+**Pengacara** *(pd)*: Yang Mulia, klien saya tidak pernah berniat mengakhiri nyawa siapa pun. Yang terjadi malam itu adalah kecelakaan dalam situasi penuh tekanan, bukan tindakan yang direncanakan.
 
 *(Momen KUNCI: kamera lepas dari POV — wajah MC ditampilkan penuh di tengah.)*
 **Jokiwi:** Saya panik. Saya cuma mau kabur, bukan menyakiti siapa pun. Tapi saya terlalu takut mengatakan yang sebenarnya sejak awal.
@@ -324,10 +324,10 @@ else:  # saksi_hancur == False
 **Pengacara:** Ini bukan akhir yang sempurna. Tapi ini akhir yang jujur.
 
 *(Layar hitam.)*
-**Jokiwi (batin):** Untuk pertama kalinya sejak malam itu, aku bisa bernapas lega. Bukan karena aku bebas — tapi karena aku akhirnya berhenti berbohong, bahkan pada diriku sendiri.
+**Jokiwi (batin):** Untuk pertama kalinya sejak malam itu, aku bisa bernapas lega. Bukan karena aku bebas, tapi karena aku akhirnya berhenti berbohong, bahkan pada diriku sendiri.
 
 > **TRUE ENDING**
-> *Manslaughter*
+> *Tidak Disengaja*
 
 ---
 

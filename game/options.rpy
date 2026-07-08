@@ -1,5 +1,5 @@
 # ==========================================================================
-# options.rpy  —  Konfigurasi dasar & pengaturan build
+# options.rpy  -  Konfigurasi dasar & pengaturan build
 # Game: Kelas 666
 # ==========================================================================
 
@@ -11,7 +11,7 @@ define config.version = "1.0.0"
 
 define gui.about = _p("""
 Visual novel interogasi/misteri.
-Prototipe Minggu 1 — Lead Programmer: Zacky.
+Lead Programmer: Zacky.
 """)
 
 # Nama dasar berkas yang dihasilkan saat build distribusi.
